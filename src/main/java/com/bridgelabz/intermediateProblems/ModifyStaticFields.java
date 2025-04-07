@@ -1,0 +1,22 @@
+package com.bridgelabz.intermediateProblems;
+
+import java.lang.reflect.Field;
+
+class Configuration {
+    private static String API_KEY = "123Api-keY";
+}
+
+public class ModifyStaticFields {
+
+    public static void main(String[] args) throws Exception {
+        Configuration configuration = new Configuration();
+        Class<?> cls = configuration.getClass();
+
+        Field field = cls.getDeclaredField("API_KEY");
+        field.setAccessible(true);
+        System.out.println("Original Key: " + field.get(configuration));
+
+        field.set(field,"456Api-keY");
+        System.out.println("Modified Key: " + field.get(configuration));
+    }
+}
